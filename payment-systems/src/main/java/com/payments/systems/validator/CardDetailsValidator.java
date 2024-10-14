@@ -21,7 +21,7 @@ public class CardDetailsValidator {
 
 
     public void checkIfCardAlreadyRegistered(CardDetails request){
-        CardDetails cardDetails = cardDetailsRepository.findByCardNumberAndUserID(request.getCardnumber(), request.getUserid());
+        CardDetails cardDetails = cardDetailsRepository.findByCardnumberAndUserid(request.getCardnumber(), request.getUserid());
         if(Objects.nonNull(cardDetails)){
             throw new BaseException(CommonUtil.buildOutputMetadata(HttpStatus.BAD_REQUEST.name(), "Card Already registered."));
         }

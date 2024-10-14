@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface CardDetailsRepository extends CrudRepository<CardDetails, Long> {
     CardDetails save(CardDetails cardDetails);
-    CardDetails findByCardNumberAndUserID(String cardnumber, int userid);
+    CardDetails findByCardnumberAndUserid(String cardnumber, int userid);
     List<CardDetails> findByUserid(int userid);
 }
