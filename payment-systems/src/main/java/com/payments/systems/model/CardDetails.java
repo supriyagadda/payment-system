@@ -14,7 +14,7 @@ import lombok.*;
 @Table(name = "carddetails")
 public class CardDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Adjust this strategy if needed
+    //@GeneratedValue(strategy = GenerationType.IDENTITY) // Adjust this strategy if needed
     @Column(name = "cardid")
     private int cardid;
     @NotNull(message = "Cardnumber should not be null.")
@@ -25,5 +25,7 @@ public class CardDetails {
     private String expirydate;
     @NotNull(message = "CardType should not be null.")
     private String cardtype;
+    @NotNull(message = "CardHolder name is mandatory.")
+    private String cardholdername;
     private int userid;
 }

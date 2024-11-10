@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Random;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -28,6 +29,7 @@ public class CardDetailsController {
     @PostMapping("/card-register")
     public ResponseEntity<OutputMetaData> registerCard(@Valid @RequestBody CardDetails cardDetails) {
         cardDetailsValidator.checkIfCardAlreadyRegistered(cardDetails);
+        cardDetails.setCardid(new Random().nextInt());
         return cardDetailsService.saveCard(cardDetails);
     }
 
