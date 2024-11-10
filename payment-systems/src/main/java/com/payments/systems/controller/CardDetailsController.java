@@ -31,8 +31,8 @@ public class CardDetailsController {
         return cardDetailsService.saveCard(cardDetails);
     }
 
-    @GetMapping("/get-carddetails")
-    public ResponseEntity<List<CardDetails>> getCardDetails(@Valid @RequestParam int userid) {
+    @GetMapping("/getcards")
+    public ResponseEntity<List<CardDetails>> getCardDetails(@Valid @RequestParam("userid") int userid) {
        userValidator.checkIfUserAvailable(userid);
        return cardDetailsService.getAllCardOfAnUser(userid);
     }
