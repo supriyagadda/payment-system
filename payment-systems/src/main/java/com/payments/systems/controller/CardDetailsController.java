@@ -29,7 +29,7 @@ public class CardDetailsController {
     @PostMapping("/card-register")
     public ResponseEntity<OutputMetaData> registerCard(@Valid @RequestBody CardDetails cardDetails) {
         cardDetailsValidator.checkIfCardAlreadyRegistered(cardDetails);
-        cardDetails.setCardid(new Random().nextInt());
+        cardDetails.setCardid(new Random().nextInt(1,1000));
         return cardDetailsService.saveCard(cardDetails);
     }
 

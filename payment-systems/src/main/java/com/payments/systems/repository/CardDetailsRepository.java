@@ -12,4 +12,6 @@ public interface CardDetailsRepository extends CrudRepository<CardDetails, Long>
     CardDetails save(CardDetails cardDetails);
     CardDetails findByCardnumberAndUserid(String cardnumber, int userid);
     List<CardDetails> findByUserid(int userid);
+    CardDetails findByCardidAndUserid(int cardid, int userid);
+
 }

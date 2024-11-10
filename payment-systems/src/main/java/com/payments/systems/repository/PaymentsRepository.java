@@ -14,6 +14,8 @@ import java.util.List;
 public interface PaymentsRepository extends CrudRepository<Payment, Long> {
     Payment save(Payment payment);
 
+    List<Payment> findByUserid(int userid);
+
 //    @Query("SELECT new com.payments.systems.model.TransactionDetails(p.amount, p.transactionTime, c.cardnumber, c.cardtype, p.businessid) " +
 //            "FROM payment p " +
 //            "JOIN p.carddetails c " +
