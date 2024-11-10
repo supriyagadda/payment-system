@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+  font-family: "Montserrat", sans-serif;
 }
 
 .App-logo {
@@ -38,5 +39,8 @@
 }
 
 p {
+  margin: 0px;
+}
+div.row{
   margin: 0px;
 }

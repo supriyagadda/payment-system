@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "billType": "Electric",
+        "billIcon": "GiElectric"
+    },
+    {
+        "id": 2,
+        "billType": "Wi5",
+        "billIcon": "FaWifi"
+    },
+    {
+        "id": 3,
+        "billType": "Mobile Recharge",
+        "billIcon": "FaMobileAlt"
+    },
+    {
+        "id": 4,
+        "billType": "Credit Card",
+        "billIcon": "BsCreditCard2FrontFill"
+    },
+    {
+        "id": 5,
+        "billType": "Car Insurance",
+        "billIcon": "SiTesla"
+    },
+    {
+        "id": 6,
+        "billType": "Property Tax",
+        "billIcon": "BiSolidInstitution"
+    },
+    {
+        "id": 7,
+        "billType": "Donation",
+        "billIcon": "BiSolidDonateHeart"
+    },
+    {
+        "id": 8,
+        "billType": "Movie",
+        "billIcon": "GiTicket"
+    }
+]

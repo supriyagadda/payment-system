@@ -33,7 +33,7 @@
   height: 77px;
   border-radius: 8px;
   margin-bottom: 20px;
-  padding-left: 23px;
+  padding: 35px 10px 45px 10px;
 }
 
 .label-tag-container {
@@ -61,18 +61,22 @@ input {
 
 .heading-container {
   text-align: left;
-  margin-bottom: 80px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .welcome-text {
-  font-size: 36px;
+  font-size: 24px;
   font-weight: 600;
+  display: inline;
 }
 
 .brand-text {
   font-size: 46px;
   font-weight: 600;
   color: #6358dc;
+  display: inline;
 }
 
 .footer-text {
@@ -120,7 +124,12 @@ input {
     padding: 5%;
   }
 
-  .field-container {
+  /* .field-container {
     height: 60px;
-  }
+  } */
+}
+
+
+.login-form-container_input{
+width: 90% !important;
 }

@@ -28,12 +28,17 @@ const LoginPage = () => {
   const goToHomePage = () => {
     navigate('/');
   };
+  
 
 
   const setApiResponse = (response) => {
     setUserId(response.userid);
     authStore.setUserId(response.userid);
     goToHomePage();
+  };
+  const setApiResponseSignUp = (response) => {
+    showBottomCenterToast('success','User Profile Created successfully!');
+    window.location.reload();
   };
 
   const loginApi = (requestObject) => {
@@ -46,7 +51,7 @@ const LoginPage = () => {
       },
       (error) => {
         setLoginApiError(error);
-        showBottomCenterToast(error);
+        showBottomCenterToast("error",error);
         setLoginApiStatus(apiStatus.API_FAILURE);
       }
     );
@@ -57,12 +62,12 @@ const LoginPage = () => {
     authService.register(
       requestObject,
       (response) => {
-        setApiResponse(response);
+        setApiResponseSignUp(response);
         setRegisterApiStatus(apiStatus.API_SUCCESS);
       },
       (error) => {
         setRegisterApiError(error);
-        showBottomCenterToast(error);
+        showBottomCenterToast('error',error);
         setRegisterApiStatus(apiStatus.API_FAILURE);
       }
     );

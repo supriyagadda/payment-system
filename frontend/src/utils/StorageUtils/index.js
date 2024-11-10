@@ -9,3 +9,9 @@ export const setUserId = (userId) => {
 export const getUserId = () => {
   return Cookies.get(USER_ID);
 };
+
+export const removeUserId = () => {
+  return Cookies.remove(USER_ID);
+};
+
+

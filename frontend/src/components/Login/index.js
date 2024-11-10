@@ -54,7 +54,7 @@ const Login = ({ onClickLogin, onClickRegister }) => {
         </div>
         <div className="label-tag-container">
           <label>Email</label>
-          <input type={"email"} value={email} onChange={onChangeEmail} />
+          <input className="login-form-container_input" type={"email"} value={email} onChange={onChangeEmail} />
         </div>
       </div>
     );
@@ -68,7 +68,7 @@ const Login = ({ onClickLogin, onClickRegister }) => {
         </div>
         <div className="label-tag-container">
           <label>First Name</label>
-          <input type={"text"} value={firstName} onChange={onChangeFirsName} />
+          <input className="login-form-container_input" type={"text"} value={firstName} onChange={onChangeFirsName} />
         </div>
       </div>
     );
@@ -82,7 +82,7 @@ const Login = ({ onClickLogin, onClickRegister }) => {
         </div>
         <div className="label-tag-container">
           <label>Last Name</label>
-          <input type={"text"} value={lastName} onChange={onChangeLastName} />
+          <input className="login-form-container_input" type={"text"} value={lastName} onChange={onChangeLastName} />
         </div>
       </div>
     );
@@ -97,7 +97,7 @@ const Login = ({ onClickLogin, onClickRegister }) => {
         <div className="label-tag-container">
           <label>Password</label>
           <input
-           
+           className="login-form-container_input"
             type={showPassword?"text":"password"}
             value={password}
             onChange={onChangePassword}
@@ -188,8 +188,8 @@ const Login = ({ onClickLogin, onClickRegister }) => {
     return (
       <div className="login-form-container">
         <div className="heading-container">
-          <p className="welcome-text">Welcome to</p>
-          <p className="brand-text">Zap Pay</p>
+          <p className="welcome-text" style={{margin:"0px"}}>Welcome to</p>
+          <p className="brand-text" style={{margin:"0px"}}>Zap Pay</p>
         </div>
         {renderEmail()}
         {authType === authTypes.register ? renderRegistrationFields() : null}

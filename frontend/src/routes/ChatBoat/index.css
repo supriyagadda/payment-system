@@ -1,0 +1,63 @@
+.glfuN{
+background-color: #003764;
+}
+
+.hQsUiY{
+    background-color: #003764;
+}
+
+.ipSaXD{
+    background-color:#003764;
+    font-size: 12px;
+    padding: 5px 10px;
+    border-top-style: solid;
+
+border-image: linear-gradient(139deg, #fb8817, #ff4b01, #c12127, #e02aff) 3;
+
+}
+.ipSaXD:hover{
+    background-color:#367aa3
+
+}
+
+.hiMqtA{
+    background-color: #003764;
+}
+
+.cRmLCo{
+    background-color: #003764;
+}
+
+.rsrBoat{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+
+}
+
+.dPdbIW{
+    /* height: 400px !important; */
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.gkhNlr{
+    margin: -8px 0 10px 46px;
+    }
+
+    .abc123{
+        z-index: 10000;
+        position: absolute;
+        bottom: 14px;
+        /* margin-right: 45px; */
+        right: 15px;
+        padding: 9px;
+        /* margin-left: -28px; */
+        width: 94%;
+    }
+
+    .jKLQUD{
+
+        justify-content: center;
+        align-items: center;
+    }
