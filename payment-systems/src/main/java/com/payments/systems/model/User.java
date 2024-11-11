@@ -1,6 +1,7 @@
 package com.payments.systems.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
@@ -17,12 +18,12 @@ public class User{
     @Column(name = "userid")
     private int userid;
     private int statusid;
-    @NotNull(message = "firstname is required")
+    @NotEmpty(message = "firstname is required")
     private String firstname;
-    @NotNull(message = "lastname is required.")
+    @NotEmpty(message = "lastname is required.")
     private String lastname;
-    @NotNull(message = "email is required.")
+    @NotEmpty(message = "email is required.")
     private String emailid;
-    @NotNull(message = "password is required.")
+    @NotEmpty(message = "password is required.")
     private String password;
 }
