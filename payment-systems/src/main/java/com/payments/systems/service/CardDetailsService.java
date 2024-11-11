@@ -2,6 +2,7 @@ package com.payments.systems.service;
 
 
 import com.payments.systems.model.CardDetails;
+import com.payments.systems.model.DeleteCard;
 import com.payments.systems.model.OutputMetaData;
 import com.payments.systems.repository.CardDetailsRepository;
 import com.payments.systems.util.CommonUtil;
@@ -34,5 +35,10 @@ public class CardDetailsService {
     public ResponseEntity<List<CardDetails>> getAllCardOfAnUser(int userid) {
         List<CardDetails> cardDetailsList = cardDetailsRepository.findByUserid(userid);
         return ResponseEntity.ok(cardDetailsList);
+    }
+
+    public ResponseEntity<OutputMetaData> deleteCard(@Valid DeleteCard request) {
+        cardDetailsRepository.deleteByCardidAndUserid(request.getCardid(), request.getUserid());
+        return ResponseEntity.ok(OutputMetaData.builder().respCode(HttpStatus.OK.name()).respMessage("Successfully deleted the card.").build());
     }
 }

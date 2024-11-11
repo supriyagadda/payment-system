@@ -22,8 +22,8 @@ public class User{
     private String firstname;
     @NotEmpty(message = "lastname is required.")
     private String lastname;
-    @NotEmpty(message = "email is required.")
+   // @NotEmpty(message = "email is required.")
     private String emailid;
-    @NotEmpty(message = "password is required.")
+   // @NotEmpty(message = "password is required.")
     private String password;
 }

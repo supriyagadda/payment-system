@@ -3,6 +3,7 @@ package com.payments.systems.service;
 
 import com.payments.systems.model.*;
 import com.payments.systems.repository.UserDetailsRepository;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
