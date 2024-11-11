@@ -75,6 +75,7 @@ input {
 .brand-text {
   font-size: 46px;
   font-weight: 600;
+  padding-left: 10px;
   color: #6358dc;
   display: inline;
 }
@@ -95,8 +96,8 @@ input {
   height: 77px;
   border-radius: 8px;
   margin-bottom: 20px;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 23px;
+  font-weight: 700;
   cursor: pointer;
   outline-color: #ffffff;
   border: none;
@@ -107,7 +108,7 @@ input {
 }
 
 .illustration-image {
-  width: 60%;
+  width: 200%;
 }
 
 @media (max-width: 1023px) {

@@ -63,7 +63,7 @@ function ChatBoat() {
     },
     {
       id: 'register-22-card',
-      message: 'Thanks for Chosing View2 Card',
+      message: 'Thanks for Chosing Bill Payments',
       trigger: 'loop',
     },
     {
@@ -95,7 +95,7 @@ function ChatBoat() {
     },    
     {
       id: 'end-message',
-      message: 'Thanks for choosing Zap Pay!',
+      message: 'Thanks for choosing Vega Pay!',
       end: true,
     },
 

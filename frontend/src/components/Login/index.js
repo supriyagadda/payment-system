@@ -5,6 +5,7 @@ import { authTypes } from "../../constants/ApplicationConstants";
 import KeyIcon from "../../icons/KeyIcon";
 import EmailIcon from "../../icons/EmailIcon";
 import PersonIcon from "../../icons/PersonIcon";
+import { GiTakeMyMoney } from "react-icons/gi";
 
 import "./index.css";
 
@@ -23,7 +24,7 @@ const Login = ({ onClickLogin, onClickRegister }) => {
   const renderIllustration = () => (
     <div className="illustration-container">
       <img
-        src="/images/login_illustration.png"
+        src="/images/vega.jpg"
         className="illustration-image"
         alt="login-illustration"
       />
@@ -136,7 +137,7 @@ const Login = ({ onClickLogin, onClickRegister }) => {
             : onClickRegisterButton
         }
         className="login-button"
-      >
+        style={{padding:"17px"}}>
         {authType === authTypes.login ? `Login` : `Register`}
       </button>
     );
@@ -167,8 +168,7 @@ const Login = ({ onClickLogin, onClickRegister }) => {
             Already have an account?
             <span
               onClick={onClickRegisterOrLoginText}
-              className="login-or-register-text"
-            >
+              className="login-or-register-text">
               {" "}
               Login
             </span>
@@ -188,8 +188,8 @@ const Login = ({ onClickLogin, onClickRegister }) => {
     return (
       <div className="login-form-container">
         <div className="heading-container">
-          <p className="welcome-text" style={{margin:"0px"}}>Welcome to</p>
-          <p className="brand-text" style={{margin:"0px"}}>Zap Pay</p>
+          <p className="brand-text" >Vega Pay</p>
+          <span style={{ marginTop: "4px" }}><GiTakeMyMoney style={{fontSize: "80px",paddingBottom:"15px" }} /></span>
         </div>
         {renderEmail()}
         {authType === authTypes.register ? renderRegistrationFields() : null}
@@ -201,7 +201,7 @@ const Login = ({ onClickLogin, onClickRegister }) => {
   };
 
   return (
-    <div className="login-page-container">
+    <div className="login-page-container" style={{paddingLeft:"0px"}}>
       {renderIllustration()}
       {renderLoginForm()}
     </div>

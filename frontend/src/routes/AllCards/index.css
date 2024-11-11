@@ -1,5 +1,5 @@
 .bgShadow{
-    background-color:#003764 !important;
+    background-color:#6358dc !important;
     color: #fff;
     box-shadow: 8px 14px 38px rgba(39,44,49,.06),1px 3px 8px rgba(39,44,49,.03);
     transition: all .5s ease;
@@ -16,12 +16,12 @@
 #uncontrolled-tab-example-tab-registerCards{
     font-size: 18px;
     font-family: sans-serif;
-    color: #003764 !important;
+    color: #6358dc !important;
 }
 #uncontrolled-tab-example-tab-viewCards{
     font-size: 18px;
     font-family: sans-serif;
-    color: #003764 !important;
+    color: #6358dc !important;
 }
 
 #uncontrolled-tab-example{
@@ -29,7 +29,7 @@
 }
 
 .btn-primary{
-    background-color: #003764 !important;
+    background-color: #6358dc !important;
     border: none;
     }
 
@@ -110,7 +110,7 @@
 
   }
   input[type="submit"] {
-    background: #003764;
+    background: #6358dc;
     color: white;
     text-transform: capitalize;
     border: none;

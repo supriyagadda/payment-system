@@ -56,25 +56,26 @@ const clearLanguageCookie = () => {
   return (
 
     <>
-      <div style={{ backgroundColor: "#003764", color: "#fff", marginBottom: "1px" }}>
-        <Row style={{ padding: "5px 10px 5px 20px", display: "flex", justifyContent: "space-between" }}>
-          <Col style={{ display: "flex", alignItems: "center", padding:"0px" }}><Link to="/" className='homelogo'><span style={{ marginRight: "5px" }}>Zap Pay </span><span style={{ marginTop: "4px" }}><GiTakeMyMoney style={{ fontSize: "30px" }} /></span></Link></Col>
-          <Col style={{ display: "flex", alignItems: "center", padding:"0px" }}><span style={{
+      <div style={{ backgroundColor: "#6358dc", color: "#fff", marginBottom: "1px" }}>
+        <Row style={{ padding: "5px 10px 10px 20px", display: "flex", justifyContent: "space-between" }}>
+          <Col style={{ display: "flex", alignItems: "center", padding:"0px" }}><Link to="/" className='homelogo'><span style={{ marginRight: "5px" }}>Vega Pay </span><span style={{ marginTop: "4px" }}><GiTakeMyMoney style={{ fontSize: "40px" }} /></span></Link></Col>
+          <Col style={{ display: "flex", alignItems: "center", padding:"0px" }}>
+          <span style={{
             marginRight: "10px", position: "absolute",
             right: "30px"
           }}>
-            <span className='firstLetter'>{`${dataObject.firstname}`} &nbsp;</span>
-            <span className='firstLetter'>{`${dataObject.lastname}`}</span>
+            <Link to="/profile"><span className='firstLetter' style={{color:"#fff"}}>{`${dataObject.firstname}`} &nbsp;</span>
+            <span className='firstLetter' style={{color:"white"}}>{`${dataObject.lastname}`}</span></Link>
             </span> <span style={{ position: "absolute", right: "10px", cursor: "pointer" }} onClick={clearLanguageCookie}><IoIosLogOut style={{ fontSize: "24px" }} /></span></Col>
         </Row>
       </div>
-      <div className="mentItems" style={{ backgroundColor: "#003764", color: "#fff" }}>
+      <div className="mentItems" style={{ backgroundColor: "#6358dc", color: "#fff", padding: "5px 10px 10px 0px"}}>
         <ul>
           <li><Link to="/cards">Cards</Link></li>
           <li><Link to="/history">Transaction History</Link></li>
           <li><Link to="/payments">Bill Payments</Link></li>
           <li><Link to="/about">About</Link></li>
-          <li style={{ position: "absolute", right: "5px" }}><Link to="/profile">User Profile</Link></li>
+          
         </ul>
       </div>
       <div>
