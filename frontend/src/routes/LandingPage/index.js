@@ -26,6 +26,8 @@ import TransactionHistoryPage from '../TransactionHistory';
 import BillPaymentsPage from '../Payments/index';
 import AboutPage from '../About';
 import UserProfilePage from '../UserProfile';
+import { FaUserEdit  } from "react-icons/fa";
+
 
 
 
@@ -57,19 +59,21 @@ const clearLanguageCookie = () => {
 
     <>
       <div style={{ backgroundColor: "#6358dc", color: "#fff", marginBottom: "1px" }}>
-        <Row style={{ padding: "5px 10px 10px 20px", display: "flex", justifyContent: "space-between" }}>
+        <Row style={{ padding: "5px 10px 5px 20px", display: "flex", justifyContent: "space-between" }}>
           <Col style={{ display: "flex", alignItems: "center", padding:"0px" }}><Link to="/" className='homelogo'><span style={{ marginRight: "5px" }}>Vega Pay </span><span style={{ marginTop: "4px" }}><GiTakeMyMoney style={{ fontSize: "40px" }} /></span></Link></Col>
           <Col style={{ display: "flex", alignItems: "center", padding:"0px" }}>
           <span style={{
             marginRight: "10px", position: "absolute",
             right: "30px"
           }}>
-            <Link to="/profile"><span className='firstLetter' style={{color:"#fff"}}>{`${dataObject.firstname}`} &nbsp;</span>
+            <Link to="/profile">
+            <FaUserEdit style={{fontSize:"17px", marginRight:"4px",marginTop:"-1px", color:"#fff"}}/>
+            <span className='firstLetter' style={{color:"#fff"}}>{`${dataObject.firstname}`} &nbsp;</span>
             <span className='firstLetter' style={{color:"white"}}>{`${dataObject.lastname}`}</span></Link>
             </span> <span style={{ position: "absolute", right: "10px", cursor: "pointer" }} onClick={clearLanguageCookie}><IoIosLogOut style={{ fontSize: "24px" }} /></span></Col>
         </Row>
       </div>
-      <div className="mentItems" style={{ backgroundColor: "#6358dc", color: "#fff", padding: "5px 10px 10px 0px"}}>
+      <div className="mentItems" style={{ backgroundColor: "#6358dc", color: "#fff", padding: "5px 10px 5px 0px"}}>
         <ul>
           <li><Link to="/cards">Cards</Link></li>
           <li><Link to="/history">Transaction History</Link></li>

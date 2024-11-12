@@ -17,7 +17,9 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import RegisterCard from './registerCard';
 
+
 import { MdDelete } from "react-icons/md";
+import ViewCards from './viewCards';
 
 
 
@@ -50,79 +52,7 @@ function AllCardsPage() {
             </Row>
           </Tab>
           <Tab eventKey="viewCards" title="View Cards">
-            <div style={{ marginBottom: "10px" }}>
-
-              <div className='bgShadow' style={{ width: "30%", marginTop: "25px", padding: "20px 20px 10px 20px", marginRight: "10px", borderRadius: "5px" }}>
-                <p>
-                  <span style={{
-                    display: "flex",
-                    justifyContent: "space-between"
-                  }}>
-                    <span>Ranga Mukkara</span>
-                    <span>
-                      <MdDelete style={{ fontSize: "24px", color: "red" }} />
-
-                    </span>
-                  </span>
-                  <p style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}>
-                    <span>5434  XXXX  XXXX  4456</span>
-                    <span>12/29</span>
-                    <span><FaCcVisa style={{ fontSize: "30px" }} /></span>
-                  </p>
-                </p>
-
-              </div>
-              <div className='bgShadow' style={{ width: "30%", marginTop: "25px", padding: "20px 20px 10px 20px", marginRight: "10px", borderRadius: "5px" }}>
-                <p>
-                  <span style={{
-                    display: "flex",
-                    justifyContent: "space-between"
-                  }}>
-                    <span>Janvi Mukkara</span>
-                    <span>
-                      <MdDelete style={{ fontSize: "24px", color: "red" }} />
-                    </span>
-                  </span>
-                  <p style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}>
-
-                    <span>9842  XXXX  XXXX  6543</span>
-                    <span>10/26</span>
-                    <span><FaCcMastercard style={{ fontSize: "30px" }} /></span>
-                  </p>
-                </p>
-              </div>
-              <div className='bgShadow' style={{ width: "30%", marginTop: "25px", padding: "20px 20px 10px 20px", marginRight: "10px", borderRadius: "5px" }}>
-                <p>
-                  <span style={{
-                    display: "flex",
-                    justifyContent: "space-between"
-                  }}>
-                    <span>Sri Bharath</span>
-                    <span>
-                      <MdDelete style={{ fontSize: "24px", color: "red" }} />
-                    </span>
-                  </span>
-                  <p style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}>
-
-                    <span>8765  XXXX  XXXX  1122</span>
-                    <span>03/27</span>
-                    <span><SiAmericanexpress style={{ fontSize: "30px" }} /></span>
-                  </p>
-                </p>
-              </div>
-            </div>
+            <ViewCards />
           </Tab>
         </Tabs>
       </div>

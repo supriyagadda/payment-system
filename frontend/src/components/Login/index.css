@@ -61,7 +61,7 @@ input {
 
 .heading-container {
   text-align: left;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
 }
@@ -95,7 +95,7 @@ input {
   color: #ffffff;
   height: 77px;
   border-radius: 8px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-size: 23px;
   font-weight: 700;
   cursor: pointer;
