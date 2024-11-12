@@ -37,9 +37,9 @@ public class PaymentsController {
 
     @PostMapping("/pay")
     public ResponseEntity<OutputMetaData> pay(@Valid @RequestBody Payment request) {
-        if(Objects.nonNull(request.getTransactionTime())){
+
             request.setTransactionTime(LocalDateTime.now());
-        }
+
         userValidator.checkIfUserAvailable(request.getUserid());
         CardDetails cardDetails = cardDetailsRepository.findByCardidAndUserid(request.getCardid(), request.getUserid());
         if(Objects.isNull(cardDetails)){
