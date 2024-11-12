@@ -9,6 +9,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.naming.directory.InvalidAttributeIdentifierException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,5 +31,14 @@ public class PaymentSystemsControllerAdvise {
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(InvalidAttributeIdentifierException.class)
+    public ResponseEntity<String> handleInvalidEnumValue(InvalidAttributeIdentifierException ex) {
+        String invalidValue = ex.getMessage();  // The invalid enum value that was passed
 
+
+        String errorMessage = "Invalid enum value '" + invalidValue + "' provided. " +
+                "Valid values are: ELECTRICITY, DONATION, WIFI, PROPERTYTAX, CREDITCARD, MOBILE, CARINSURANCE, GAS.";
+
+        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+    }
 }

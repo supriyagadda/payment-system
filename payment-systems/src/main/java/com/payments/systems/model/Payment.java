@@ -2,6 +2,9 @@ package com.payments.systems.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -19,9 +22,11 @@ public class Payment {
    // @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment for paymentId
     private Integer paymentid;
 
+    @Positive(message = "Amount should be there.")
     private BigDecimal amount;
 
-    private int businessid; // Assuming you have a Business entity class
+    @NotNull(message = "Business should be present.")
+    private BUSINESS businesstype; // Assuming you have a Business entity class
 
     private LocalDateTime transactionTime;
 

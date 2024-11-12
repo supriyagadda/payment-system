@@ -53,7 +53,7 @@ public class PaymentsService {
 //                    );
                     transactionDetailsList.add(TransactionDetails.builder()
                                     .amount(payment.getAmount())
-                                    .businessid(payment.getBusinessid())
+                                    .business(payment.getBusinesstype())
                                     .cardType(cardDetails.getCardtype())
                                     .cardNumber(cardDetails.getCardnumber())
                                     .transactionTime(payment.getTransactionTime())

@@ -17,6 +17,6 @@ public class TransactionDetails {
     private LocalDateTime transactionTime;
     private String cardNumber;
     private String cardType;
-    private int businessid;
+    private BUSINESS business;
     private int transactionid;
 }
