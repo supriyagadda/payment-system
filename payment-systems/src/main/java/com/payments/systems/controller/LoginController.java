@@ -48,7 +48,8 @@ public class LoginController {
 
     @PutMapping("/update")
     public ResponseEntity<User> updateUser(@Valid @RequestBody User user){
-        return ResponseEntity.ok().build();
+
+        return userSignInService.updateUser(user);
     }
 
 
