@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -39,7 +40,7 @@ public class PaymentsController {
     public ResponseEntity<OutputMetaData> pay(@Valid @RequestBody Payment request) {
 
             request.setTransactionTime(LocalDateTime.now());
-
+        request.setPaymentid(new Random().nextInt(1000,10000));
         userValidator.checkIfUserAvailable(request.getUserid());
         CardDetails cardDetails = cardDetailsRepository.findByCardidAndUserid(request.getCardid(), request.getUserid());
         if(Objects.isNull(cardDetails)){

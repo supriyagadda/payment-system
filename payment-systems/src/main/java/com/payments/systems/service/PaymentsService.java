@@ -57,6 +57,7 @@ public class PaymentsService {
                                     .cardType(cardDetails.getCardtype())
                                     .cardNumber(cardDetails.getCardnumber())
                                     .transactionTime(payment.getTransactionTime())
+                                    .transactionid(payment.getPaymentid())
                             .build());
                 }
             }

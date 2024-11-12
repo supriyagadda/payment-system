@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Table(name = "payment")
 public class Payment {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment for paymentId
+   // @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment for paymentId
     private Integer paymentid;
 
     private BigDecimal amount;

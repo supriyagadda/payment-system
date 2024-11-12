@@ -18,4 +18,5 @@ public class TransactionDetails {
     private String cardNumber;
     private String cardType;
     private int businessid;
+    private int transactionid;
 }
