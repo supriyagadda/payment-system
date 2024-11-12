@@ -6,6 +6,7 @@ import KeyIcon from "../../icons/KeyIcon";
 import EmailIcon from "../../icons/EmailIcon";
 import PersonIcon from "../../icons/PersonIcon";
 import { GiTakeMyMoney } from "react-icons/gi";
+import abc from"./vega.jpg"
 
 import "./index.css";
 
@@ -186,7 +187,7 @@ const Login = ({ onClickLogin, onClickRegister }) => {
 
   const renderLoginForm = () => {
     return (
-      <div className="login-form-container">
+      <div className="login-form-container" style={{position:"absolute", right:"40px"}}>
         <div className="heading-container">
           <p className="brand-text" >Vega Pay</p>
           <span style={{ marginTop: "4px" }}><GiTakeMyMoney style={{fontSize: "80px",paddingBottom:"15px" }} /></span>
@@ -201,8 +202,9 @@ const Login = ({ onClickLogin, onClickRegister }) => {
   };
 
   return (
-    <div className="login-page-container" style={{paddingLeft:"0px"}}>
-      {renderIllustration()}
+    <div className="login-page-container" style={{paddingLeft:"0px", backgroundImage:`url(${abc})`, backgroundSize: "cover",
+    backgroundPosition: "center"}}>
+      {/* {renderIllustration()} */}
       {renderLoginForm()}
     </div>
   );
