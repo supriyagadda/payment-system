@@ -25,6 +25,13 @@ import ViewCards from './viewCards';
 
 function AllCardsPage() {
 
+   // State to hold all cards
+   const [cards, setCards] = useState([]);
+   const [refresh, setRefresh] = useState(false);
+
+   // Function to trigger refresh of card list
+   const triggerRefresh = () => setRefresh((prev) => !prev);
+
   return (
     <>
       {/* <div >
@@ -48,11 +55,11 @@ function AllCardsPage() {
         >
           <Tab eventKey="registerCards" title="Register Card">
             <Row>
-              <RegisterCard />
+              <RegisterCard onCardAdded={triggerRefresh}/>
             </Row>
           </Tab>
           <Tab eventKey="viewCards" title="View Cards">
-            <ViewCards />
+            <ViewCards refresh={refresh} onCardDeleted={triggerRefresh}/>
           </Tab>
         </Tabs>
       </div>

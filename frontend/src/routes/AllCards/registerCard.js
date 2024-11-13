@@ -6,7 +6,7 @@ import Config from "../../constants/EnvironmentConstants";
 const backendBaseUrl = Config.BACKEND_BASE_URL;
 
 
-function RegisterCard() {
+function RegisterCard({ onCardAdded }) {
   const {
     register,
     handleSubmit,
@@ -45,6 +45,8 @@ function RegisterCard() {
       const data = await response.json();
       if (response.ok) {
         showBottomCenterToast('success','Card registered successfully!');
+        // Call the function passed from the parent component
+        onCardAdded();
         reset()
       } else {
         showBottomCenterToast('error',`Card Already registered!`);
@@ -99,7 +101,7 @@ function RegisterCard() {
       <select style={{fontSize:"16px"}} {...register("creditCardType", {required: true})} className='inputSelect'>
         <option value="">Select Card</option>
         <option value="Visa">Visa</option>
-        <option value="Master">Master</option>
+        <option value="Master Card">Master Card</option>
         <option value="American Express">American Express</option>
       </select>
       {errors?.creditCardType?.type === "required" && <p className="p_error">Select Credit Card Type is required</p>}
