@@ -17,7 +17,8 @@ class AuthService {
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        // throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`Invalid Credentials`)
       }
 
       const result = await response.json();

@@ -33,20 +33,20 @@ function RegisterCard({ onCardAdded }) {
     const dataObject = JSON.parse(storedData);
 
      // Validate expiry date
-     if (!expiryDate) {
-      setExpiryError(true); // Show error if expiry date is missing
-      return;
-    }
+    //  if (!expiryDate) {
+    //   setExpiryError(true); // Show error if expiry date is missing
+    //   return;
+    // }
 
-    // Format expiry date as MM/YY
-    const formattedExpiryDate = format(expiryDate, 'MM/yy');
+    // // Format expiry date as MM/YY
+    // const formattedExpiryDate = format(expiryDate, 'MM/yy');
 
     let newPayload = {
       cardholdername: payload.cardName,
       cardnumber: payload.cardNumber,
       cardtype: payload.creditCardType,
       cvv: payload.cardCvv,
-      expirydate: formattedExpiryDate,
+      expirydate: payload.expiryDate,
       userid: dataObject.userid
     }
     try {
@@ -80,6 +80,15 @@ function RegisterCard({ onCardAdded }) {
     setExpiryDate(null); // Clear expiry date
     
   };
+
+  function formatMonthYear() {
+    const input = document.getElementById("monthYear").value;
+    if (input) {
+        const [year, month] = input.split("-");
+        const formattedDate = `${month}/${year.slice(2)}`; // Format as mm/yy
+        document.getElementById("formattedDate").textContent = formattedDate;
+    }
+}
 
   return (
     <>
@@ -131,8 +140,13 @@ function RegisterCard({ onCardAdded }) {
         </div>
 
         {/* ------------------- */}
+        <div style={{display:"flex", justifyContent:"space-between", alignItems:"baseline"}}>
+
+<div
+style={{display:"grid", width:"48%"}}
+>
         <div><label>Expiry Date</label></div>
-        <ReactDatePicker
+        {/* <ReactDatePicker
           selected={expiryDate}
           onChange={(date) => {
             setExpiryDate(date); // Set expiry date
@@ -143,14 +157,19 @@ function RegisterCard({ onCardAdded }) {
           minDate={new Date()} // Prevent selecting past dates
           placeholderText="Select Expiry Date"
           className="inputSelect"
+        /> */}
+        <input type="month" id="monthYear" name="monthYear"
+         {...register('expiryDate', {
+          required: 'ExpiryDate is required', // Custom error message for required validation
+          pattern: {
+            message: 'expiryDate must be MM/YY', // Custom error message
+          },
+        })}
         />
-        {/* Display expiry error only when invalid */}
-        {/* {(expiryError || (isSubmitted && !expiryDate)) && (
-          <p className="p_error">Expiry date is required</p>
-        )} */}
+          {errors?.expiryDate && <p className="p_error">{errors.expiryDate.message}</p>}
 
-        {/* ------------------- */}
-        <div>
+  </div>
+  <div style={{display:"grid", width:"48%"}}>
           <label>CVV</label>
           <input
             placeholder="Enter 3-digit CVV"
@@ -166,6 +185,14 @@ function RegisterCard({ onCardAdded }) {
           {/* Show error messages */}
           {errors?.cardCvv && <p className="p_error">{errors.cardCvv.message}</p>}
         </div>
+  </div>
+        {/* Display expiry error only when invalid */}
+        {/* {(expiryError || (isSubmitted && !expiryDate)) && (
+          <p className="p_error">Expiry date is required</p>
+        )} */}
+
+        {/* ------------------- */}
+     
         {/* ------------------- */}
 
         <div className="divReset">

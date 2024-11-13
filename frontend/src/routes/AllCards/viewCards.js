@@ -95,6 +95,13 @@ function ViewCards({ refresh, onCardDeleted }) {
       return cardnumber; // Return the original card number if it's not 16 digits
     };
   
+    const formatExpiryDate = (expiryDate) => {
+      if (expiryDate) {
+        const [year, month] = expiryDate.split("-");
+        return `${month}/${year}`; // Format as mm/yyyy
+      }
+      return "";
+    };
 
   return (
     <>
@@ -160,7 +167,7 @@ function ViewCards({ refresh, onCardDeleted }) {
                   }}>
                     <span>{maskCardNumber(item.cardnumber)}</span> {/* Masked card number */}
 
-                    <span>{item.expirydate}</span>
+                    <span>{formatExpiryDate(item.expirydate)}</span>
                     {
                       item.cardtype === "Visa" && <span><FaCcVisa style={{ fontSize: "30px" }} /></span>
                     }

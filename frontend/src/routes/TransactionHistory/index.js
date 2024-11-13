@@ -1,9 +1,60 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./index.css";
+import { showBottomCenterToast } from "../../utils/ToastUtils";
+
+import Config from "../../constants/EnvironmentConstants";
+const backendBaseUrl = Config.BACKEND_BASE_URL;
 
 
 
 function TransactionHistoryPage() {
+
+  const [allCards, setAllCards] = useState([]);
+
+  useEffect(() => {
+    fetchTransactionHistor()
+  }, [])
+
+  const fetchTransactionHistor = async (payload) => {
+    const storedData = sessionStorage.getItem('userDataInfo');
+    const dataObject = JSON.parse(storedData);
+    try {
+      const response = await fetch(`${backendBaseUrl}transactiondetails?userid=${dataObject.userid}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      const data = await response.json();
+      console.log("RSR Cards:", data)
+      setAllCards([...data])
+    } catch (error) {
+      showBottomCenterToast('error', `Request failed: ${error.message}`);
+    }
+  };
+
+  const convertToEST = (dateString) => {
+    const date = new Date(dateString);
+    
+    // Convert the date to EST (UTC-5)
+    const utcOffset = date.getTimezoneOffset() * 60000; // Offset in milliseconds
+    const estOffset = -5 * 60 * 60 * 1000; // EST offset in milliseconds
+    
+    const estDate = new Date(date.getTime() + utcOffset + estOffset);
+    
+    // Format the date and time in EST as desired, e.g., "MM/DD/YYYY HH:MM AM/PM"
+    const options = {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true
+    };
+    return estDate.toLocaleString('en-US', options);
+  };
   
   return (
     <>
@@ -25,7 +76,7 @@ function TransactionHistoryPage() {
       marginLeft: "100px"
     }}
     >
- <table>
+ <table style={{fontSize:"14px"}}>
     <tr>
         <th>#</th>
         <th>Transaction Id</th>
@@ -35,65 +86,26 @@ function TransactionHistoryPage() {
         <th>Card Number</th>
         <th>Card Type</th>
     </tr>
-    <tr>
-        <td>1</td>
-        <td>zp12344</td>
-        <td>2024-11-04</td>
-        <td>Electricity</td>
-        <td>$123</td>
-        <td>9876-XXXX-XXXX-1234</td>
-        <td>Visa</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>zp12345</td>
-        <td>2024-11-03</td>
-        <td>Internet</td>
-        <td>$100</td>
-        <td>1235-XXXX-XXXX-0789</td>
-        <td>Visa</td>
+    {
+      allCards.length >0 ?
+      allCards.map((item,index)=>(
 
-    </tr>
     <tr>
-        <td>3</td>
-        <td>zp12346</td>
-        <td>2024-10-08</td>
-        <td>Internet</td>
-        <td>$75</td>
-        <td>3524-XXXX-XXXX-3898</td>
-        <td>Master</td>
-
+        <td>{index+1}</td>
+        <td>{item.transactionid}</td>
+        <td>{convertToEST(item.transactionTime)}</td>
+        <td>{item.business}</td>
+        <td>{"$ "+item.amount}</td>
+        <td>{item.cardNumber}</td>
+        <td>{item.cardType}</td>
     </tr>
-    <tr>
-        <td>4</td>
-        <td>zp12347</td>
-        <td>2024-09-28</td>
-        <td>Gas</td>
-        <td>$150</td>
-        <td>3467-XXXX-XXXX-7679</td>
-        <td>Master</td>
-
-    </tr>
-    <tr>
-        <td>5</td>
-        <td>zp12348</td>
-        <td>2024-09-28</td>
-        <td>Gas</td>
-        <td>$125</td>
-        <td>9796-XXXX-XXXX-7687</td>
-        <td>American Express</td>
-
-    </tr>
-    <tr>
-        <td>6</td>
-        <td>zp12349</td>
-        <td>2024-08-30</td>
-        <td>Internet</td>
-        <td>$55</td>
-        <td>3654-XXXX-XXXX-0768</td>
-        <td>Master</td>
-
-    </tr>
+      ))
+      :
+      <tr>
+        <td colSpan={7} style={{textAlign:"center"}}>No Transaction Found</td>
+      </tr>
+    }
+   
 </table>
 
     </div>

@@ -17,6 +17,7 @@ import { BiSolidDonateHeart } from "react-icons/bi";
 import { GiTicket } from "react-icons/gi";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+
 import { useForm } from "react-hook-form";
 import billType from "./billType.json";
 
@@ -29,14 +30,14 @@ const backendBaseUrl = Config.BACKEND_BASE_URL;
 
 function BillPaymentsPage() {
   const options = [
-    { icon: <GiElectric style={{ color: "#fff", fontSize: "36px", marginLeft: "15px" }} />, label: "Electric" },
-    { icon: <FaWifi style={{ color: "#fff", fontSize: "36px", marginLeft: "15px" }} />, label: "Wi-Fi" },
-    { icon: <FaMobileAlt style={{ color: "#fff", fontSize: "36px", marginLeft: "15px" }} />, label: "Mobile" },
-    { icon: <BsCreditCard2FrontFill style={{ color: "#fff", fontSize: "36px", marginLeft: "15px" }} />, label: "Credit Card" },
-    { icon: <SiTesla style={{ color: "#fff", fontSize: "36px", marginLeft: "15px" }} />, label: "Car Insurance" },
-    { icon: <BiSolidInstitution style={{ color: "#fff", fontSize: "36px", marginLeft: "15px" }} />, label: "Property Tax" },
-    { icon: <BiSolidDonateHeart style={{ color: "#fff", fontSize: "36px", marginLeft: "15px" }} />, label: "Donation" },
-    { icon: <GiTicket style={{ color: "#fff", fontSize: "36px", marginLeft: "15px" }} />, label: "Movie" },
+    { icon: <GiElectric style={{ color: "#fff", fontSize: "36px", marginLeft: "15px" }} />, label: "ELECTRICITY" },
+    { icon: <FaWifi style={{ color: "#fff", fontSize: "36px", marginLeft: "15px" }} />, label: "WIFI" },
+    { icon: <FaMobileAlt style={{ color: "#fff", fontSize: "36px", marginLeft: "15px" }} />, label: "MOBILE" },
+    { icon: <BsCreditCard2FrontFill style={{ color: "#fff", fontSize: "36px", marginLeft: "15px" }} />, label: "CREDITCARD" },
+    { icon: <SiTesla style={{ color: "#fff", fontSize: "36px", marginLeft: "15px" }} />, label: "CARINSURANCE" },
+    { icon: <BiSolidInstitution style={{ color: "#fff", fontSize: "36px", marginLeft: "15px" }} />, label: "PROPERTYTAX" },
+    { icon: <BiSolidDonateHeart style={{ color: "#fff", fontSize: "36px", marginLeft: "15px" }} />, label: "DONATION" },
+    { icon: <GiGasPump style={{ color: "#fff", fontSize: "36px", marginLeft: "15px" }} />, label: "GAS" },
   ];
 
   const [bills, setBills] = useState([...billType]);
@@ -92,7 +93,7 @@ function BillPaymentsPage() {
 
     let newPayload = {
       amount: payload.billAmount,
-      businessid: payload.accountNo,
+      businesstype: billTypeName,
       cardid: payload.paymentCard,
       userid: dataObject.userid
     }
@@ -109,6 +110,7 @@ function BillPaymentsPage() {
       const data = await response.json();
       if (response.ok) {
         showBottomCenterToast('success', 'Payment done successfully!');
+        setShow(false)
         reset()
       } else {
         showBottomCenterToast('error', `Payment failed!`);

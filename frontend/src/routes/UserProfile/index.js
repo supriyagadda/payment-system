@@ -45,13 +45,17 @@ function UserProfilePage() {
 
       if (response.ok) {
         const updatedData = await response.json();
+        console.log("RSR uPDATE:", updatedData)
         // Update form fields with new values
         reset({
           firstName: updatedData.firstname,
           lastName: updatedData.lastname,
           email: dataObject.emailid // Retain email as unchanged
         });
+        sessionStorage.setItem('userDataInfo', JSON.stringify(updatedData));
         alert("User profile updated successfully!");
+    window.location.reload();
+
       } else {
         alert("Failed to update the profile. Please try again.");
       }

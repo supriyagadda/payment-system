@@ -32,7 +32,7 @@ lastPath == "login"
   },[dummyData])
 
   useEffect(() => {
-    if(lastPath == "login"){
+    if(lastPath == "login" || lastPath == "profile"){
 console.log("Reload")
     }else{
 
