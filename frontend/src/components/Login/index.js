@@ -170,12 +170,11 @@ const Login = ({ onClickLogin, onClickRegister }) => {
   const renderEmail = () => {
     return (
       <div className="field-container">
-        <div>
+        <div className="center-container">
           <EmailIcon />
         </div>
         <div className="label-tag-container">
-          <label>Email</label>
-          <input className="login-form-container_input" type={"email"} value={email} onChange={onChangeEmail} />
+          <input className="login-form-container_input" type={"email"} value={email} onChange={onChangeEmail} placeholder="Email"/>
           {errors.email && <span className="error-message">{errors.email}</span>}
         </div>
        
@@ -187,12 +186,11 @@ const Login = ({ onClickLogin, onClickRegister }) => {
   const renderFirstName = () => {
     return (
       <div className="field-container">
-        <div>
+        <div className="center-container">
           <PersonIcon />
         </div>
         <div className="label-tag-container">
-          <label>First Name</label>
-          <input className="login-form-container_input" type={"text"} value={firstName} onChange={onChangeFirstName} />
+          <input className="login-form-container_input" type={"text"} value={firstName} onChange={onChangeFirstName} placeholder="First Name"/>
           {errors.firstName && (
           <span className="error-message">{errors.firstName}</span>
         )}
@@ -204,12 +202,11 @@ const Login = ({ onClickLogin, onClickRegister }) => {
   const renderLastName = () => {
     return (
       <div className="field-container">
-        <div>
+        <div className="center-container">
           <PersonIcon />
         </div>
         <div className="label-tag-container">
-          <label>Last Name</label>
-          <input className="login-form-container_input" type={"text"} value={lastName} onChange={onChangeLastName} />
+          <input className="login-form-container_input" type={"text"} value={lastName} onChange={onChangeLastName} placeholder="Last Name"/>
           {errors.lastName && (
           <span className="error-message">{errors.lastName}</span>
         )}
@@ -221,17 +218,17 @@ const Login = ({ onClickLogin, onClickRegister }) => {
   const renderPassword = () => {
     return (
       <div className="field-container">
-      <div>
+      <div className="center-container">
         <KeyIcon />
       </div>
       <div className="label-tag-container">
-        <label>Password</label>
         <div style={{ display: "flex", alignItems: "center" }}>
           <input
             className="login-form-container_input"
             type={showPassword ? "text" : "password"}
             value={password}
             onChange={onChangePassword}
+            placeholder="Password"
           />
           <span onClick={toggleShowPassword} style={{ cursor: "pointer", marginLeft: "8px" }}>
             {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
