@@ -1,29 +1,66 @@
 import React, { useState } from 'react';
 import "./index.css";
 import { useForm } from "react-hook-form";
+import Config from "../../constants/EnvironmentConstants";
+const backendBaseUrl = Config.BACKEND_BASE_URL;
 
 
 function UserProfilePage() {
-  const storedData = sessionStorage.getItem('userDataInfo');
-  const dataObject = JSON.parse(storedData);
+  const storedData = sessionStorage.getItem("userDataInfo");
+  const dataObject = JSON.parse(storedData); // Parse user data from sessionStorage
+
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors }
-  } = useForm(
-    {
-      defaultValues: {
-        firstName: dataObject.firstname,
-        lastName: dataObject.lastname,
-        email:dataObject.emailid
-      }
+  } = useForm({
+    defaultValues: {
+      firstName: dataObject.firstname,
+      lastName: dataObject.lastname,
+      email: dataObject.emailid
     }
-  );
+  });
 
-  const onSubmit = (data) => {
-    alert(JSON.stringify(data));
+  const [isLoading, setIsLoading] = useState(false); // Loading state
+
+  const onSubmit = async (data) => {
+    setIsLoading(true); // Start loading
+   
+    let crdPayload = {
+      "firstname": data.firstName,
+      "lastname": data.lastName,
+      "userid": dataObject.userid // Use userid from session data
+    };
+   
+    try {
+      const response = await fetch(`${backendBaseUrl}update`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(crdPayload),
+      });
+
+
+      if (response.ok) {
+        const updatedData = await response.json();
+        // Update form fields with new values
+        reset({
+          firstName: updatedData.firstname,
+          lastName: updatedData.lastname,
+          email: dataObject.emailid // Retain email as unchanged
+        });
+        alert("User profile updated successfully!");
+      } else {
+        alert("Failed to update the profile. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      alert("An error occurred. Please try again.");
+    } finally {
+      setIsLoading(false); // End loading
+    }
   };
   
   return (
@@ -81,15 +118,19 @@ function UserProfilePage() {
 {/* ------------------- */}
 <label>Email Id</label>
       <input
-      value="letsteachui@gmail.com"
+      value={dataObject.emailid}
       disabled
       {...register("email")}
       />
 
 
       <div className="divReset">
-      <input type="reset" onClick={reset} />
-      <input type="submit" />
+      <input type="reset" onClick={() => reset()} />
+            <input
+              type="submit"
+              disabled={isLoading}
+              value={isLoading ? "Updating..." : "Submit"}
+            />
       </div>
     </form>
     </div>
