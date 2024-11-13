@@ -27,6 +27,21 @@ import { showBottomCenterToast } from '../../utils/ToastUtils';
 const backendBaseUrl = Config.BACKEND_BASE_URL;
 
 
+const labelMapping = {
+  CREDITCARD: "CREDIT CARD",
+  PROPERTYTAX: "PROPERTY TAX",
+  CARINSURANCE: "CAR INSURANCE",
+  ELECTRICITY: "ELECTRICITY",
+  WIFI: "WIFI",
+  MOBILE: "MOBILE",
+  DONATION: "DONATION",
+  GAS: "GAS",
+};
+
+const getDisplayLabel = (label) => {
+  return labelMapping[label] || label; // Fallback to original label if no mapping exists
+};
+
 
 function BillPaymentsPage() {
   const options = [
@@ -157,7 +172,7 @@ function BillPaymentsPage() {
                   {option.icon}
                 </span>
                 <span style={{ color: "hsl(302, 57%, 30%)", textAlign: "center" }}>
-                  {option.label}
+                  {getDisplayLabel(option.label)}
                 </span>
               </Col>
             ))
@@ -166,7 +181,7 @@ function BillPaymentsPage() {
         <hr />
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>{billTypeName} Bill</Modal.Title>
+          <Modal.Title>{getDisplayLabel(billTypeName)} Bill</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form onSubmit={handleSubmit(onSubmit)}>
