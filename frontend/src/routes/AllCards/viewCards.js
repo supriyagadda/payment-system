@@ -167,7 +167,7 @@ function ViewCards({ refresh, onCardDeleted }) {
                   }}>
                     <span>{maskCardNumber(item.cardnumber)}</span> {/* Masked card number */}
 
-                    <span>{formatExpiryDate(item.expirydate)}</span>
+                    <span>{item.expirydate}</span>
                     {
                       item.cardtype === "Visa" && <span><FaCcVisa style={{ fontSize: "30px" }} /></span>
                     }

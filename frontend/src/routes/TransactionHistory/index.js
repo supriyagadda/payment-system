@@ -102,7 +102,7 @@ function TransactionHistoryPage() {
       ))
       :
       <tr>
-        <td colSpan={7} style={{textAlign:"center"}}>No Transaction Found</td>
+        <td colSpan={7} style={{textAlign:"center"}}>No Transactions Found</td>
       </tr>
     }
    
