@@ -3,9 +3,6 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { showBottomCenterToast } from "../../utils/ToastUtils";
 import { MdDelete } from "react-icons/md";
-import { FaCcVisa } from "react-icons/fa";
-import { FaCcMastercard } from "react-icons/fa";
-import { SiAmericanexpress } from "react-icons/si";
 import { Link } from "react-router-dom";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
@@ -13,6 +10,11 @@ import Config from "../../constants/EnvironmentConstants";
 const backendBaseUrl = Config.BACKEND_BASE_URL;
 
 
+const cardTypeIcons = {
+  "American Express": "https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg",
+  Visa: "https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png",
+  "Master Card": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg",
+};
 
 function ViewCards({ refresh, onCardDeleted }) {
 
@@ -168,15 +170,18 @@ function ViewCards({ refresh, onCardDeleted }) {
                     <span>{maskCardNumber(item.cardnumber)}</span> {/* Masked card number */}
 
                     <span>{item.expirydate}</span>
-                    {
-                      item.cardtype === "Visa" && <span><FaCcVisa style={{ fontSize: "30px" }} /></span>
-                    }
-                    {
-                      item.cardtype === "Master Card" && <span><FaCcMastercard style={{ fontSize: "30px" }} /></span>
-                    }
-                    {
-                      item.cardtype === "American Express" && <span><SiAmericanexpress style={{ fontSize: "30px" }} /></span>
-                    }
+                    {cardTypeIcons[item.cardtype] && (
+                    <img
+                      src={cardTypeIcons[item.cardtype]}
+                      alt={item.cardtype}
+                      style={{
+                        height: "50px", // Fixed height for the icon
+                        width: "50px", // Fixed width for the icon
+                        objectFit: "contain", // Ensure the icon maintains its aspect ratio
+                        marginRight:"0px" 
+                      }}
+                    />
+                  )}
                   </p>
                 </p>
 

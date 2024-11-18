@@ -43,3 +43,20 @@
     border: 1px solid white !important;
 
 }
+
+.dropdown-item {
+    padding: 10px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+.dropdown-item:hover {
+     background: #f9f9f9;
+}
+
+img {
+    height: 20px;
+    width: 60px;
+  }
+.dropdown-basic-button {
+    width: 500px; /* Adjust width as needed */
+  }

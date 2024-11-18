@@ -17,6 +17,11 @@ import { BiSolidDonateHeart } from "react-icons/bi";
 import { GiTicket } from "react-icons/gi";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Select from "react-select";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 import { useForm } from "react-hook-form";
 import billType from "./billType.json";
@@ -42,6 +47,13 @@ const getDisplayLabel = (label) => {
   return labelMapping[label] || label; // Fallback to original label if no mapping exists
 };
 
+// Map card types to icons
+const cardTypeIcons = {
+  "American Express": "https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg", // American Express logo
+  Visa: "https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png", // Visa logo
+  "Master Card": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg", // MasterCard logo
+};
+
 
 function BillPaymentsPage() {
   const options = [
@@ -59,6 +71,8 @@ function BillPaymentsPage() {
 
   const [show, setShow] = useState(false);
   const [billTypeName, setBillTypeName] = useState("");
+  const [selectedCard, setSelectedCard] = useState(null);
+  const [cardError, setCardError] = useState(false);
 
   const [cards, setCards] = useState([]);
 
@@ -81,18 +95,29 @@ function BillPaymentsPage() {
       });
   }, [])
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    resetForm();
+  };
   const handleShow = (data) => {
     // console.log("RSR--dATA:", data)
     setBillTypeName(data.label)
+    setSelectedCard(null); // Reset selected card when the modal is opened
     setShow(true)
   };
-  //   useEffect(() => {
-  //     fetch(`${billType}`)
-  //         .then(response => console.log("rsr----json:", response.json()))
-  //         .then(data => setBills(data))
-  //         .catch(error => console.error("Error loading bills:", error));
-  // }, []);
+
+  
+
+  const resetForm = () => {
+    reset(); // Reset form fields
+    setSelectedCard(null); // Reset selected card
+  };
+
+  const handleSelect = (card) => {
+    setSelectedCard(card);
+    setCardError(false); // Clear error when a card is selected
+  };
+
 
   const {
     register,
@@ -106,10 +131,16 @@ function BillPaymentsPage() {
     const storedData = sessionStorage.getItem('userDataInfo');
     const dataObject = JSON.parse(storedData);
 
+    if (!selectedCard) {
+      setCardError(true); // Show error if no card is selected
+      return; // Stop form submission
+    }
+  
+
     let newPayload = {
       amount: payload.billAmount,
       businesstype: billTypeName,
-      cardid: payload.paymentCard,
+      cardid: selectedCard.cardid,
       userid: dataObject.userid
     }
     // console.log("RSR--->Data Pay:", newPayload)
@@ -135,6 +166,31 @@ function BillPaymentsPage() {
     }
   };
 
+
+  const formatCardNumberWithIcon = (card) => {
+    const firstFour = card.cardnumber.slice(0, 4);
+    const lastFour = card.cardnumber.slice(-4);
+    const masked = "XXXX-XXXX";
+    return {
+      label: (
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <span>{`${firstFour}-${masked}-${lastFour}`}</span>
+          <img
+            src={cardTypeIcons[card.cardtype]}
+            alt={card.cardtype}
+            style={{ height: "20px", marginLeft: "8px" }}
+          />
+        </div>
+      ),
+      value: card.cardid,
+    };
+  };
+
+  const cardOptions = cards.map((card) => formatCardNumberWithIcon(card));
+
+ 
+
+
   return (
     <>
       <div style={{
@@ -154,12 +210,6 @@ function BillPaymentsPage() {
         <Row >
           {
             options.map((option, index) => (
-              // <Col key={key} onClick={handleShow} sm={3} md={3} lg={3} style={{display:"grid", marginBottom:"15px"}}>
-              //   <span className='bgShadowPayment' >
-              //     <GiElectric style={{color:"#fff", fontSize:"36px", marginLeft:"15px"}} />
-              //   </span>
-              //   <span style={{color:"hsl(302.05479452054794, 57.4803149606%, 29.8039215686%)", textAlign:"center"}}>{item.billTyp}</span>
-              // </Col>
               <Col
                 key={index}
                 sm={3}
@@ -192,8 +242,9 @@ function BillPaymentsPage() {
                 {...register("accountNo", {
                   required: true,
                   maxLength: 10,
-                  pattern: /^[0-9]/i
+                  pattern: /^[0-9]+$/ // Allows only numbers
                 })}
+                onInput={(e) => (e.target.value = e.target.value.replace(/[^0-9]/g, ""))} 
               />
               {errors?.accountNo?.type === "required" && <p className="p_error">Account No is required</p>}
               {errors?.accountNo?.type === "maxLength" && (
@@ -208,22 +259,63 @@ function BillPaymentsPage() {
                 // value="$125"
                 // disabled
                 placeholder="Enter Bill Amount"
-                {...register("billAmount", { required: true })}
+                {...register("billAmount", {
+                  required: true,
+                  pattern: /^[0-9]+(\.[0-9]{1,2})?$/ // Allows numbers with up to 2 decimal places
+                })}
+                onInput={(e) => {
+                  // Restrict input to only numbers and one decimal point
+                  e.target.value = e.target.value
+                    .replace(/[^0-9.]/g, "") // Allow only numbers and a period
+                    .replace(/(\..*?)\..*/g, "$1"); // Allow only one decimal point
+                }}
               />
               {errors?.billAmount?.type === "required" && <p className="p_error">Bill Amount is required</p>}
 
               {/* ------------------- */}
+              <div style={{ marginBottom: "20px" }}>
               <label>Payment Card</label>
-              <select {...register("paymentCard", { required: true })} className='inputSelect'>
-                <option value="">Select Card</option>
-                {/* <option value="4323-8765-0995-4567">4323-8765-0995-4567</option>
-        <option value="8765-8876-0995-4567">8765-8876-0995-4567</option>
-        <option value="8995-6655-1221-4567">8995-6655-1221-4567</option> */}
-                {cards.map((item, index) => (
-                  <option key={index} value={item.cardid}>{item.cardnumber}</option>
-                ))}
-              </select>
-              {errors?.paymentCard?.type === "required" && <p className="p_error">Select Payment Card is required</p>}
+         
+              <DropdownButton 
+        id="dropdown-basic-button"
+        title={
+          selectedCard ? (
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <span>{`${selectedCard.cardnumber.slice(0, 4)}-XXXX-XXXX-${selectedCard.cardnumber.slice(-4)}`}</span>
+              <img
+                src={cardTypeIcons[selectedCard.cardtype]}
+                alt={selectedCard.cardtype}
+                style={{ height: "20px", marginLeft: "215px" }}
+              />
+            </div>
+          ) : (
+            "Select Card"
+          )
+        }
+        
+        
+      >
+        {cards.map((card) => (
+          <Dropdown.Item
+            key={card.cardid}
+            onClick={() => handleSelect(card)}
+            style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
+          >
+            <span>{`${card.cardnumber.slice(0, 4)}-XXXX-XXXX-${card.cardnumber.slice(-4)}`}</span>
+            <img
+              src={cardTypeIcons[card.cardtype]}
+              alt={card.cardtype}
+              style={{ height: "20px", marginLeft: "208px" }}
+            />
+          </Dropdown.Item>
+        ))}
+          
+      </DropdownButton>
+      {cardError && <p className="p_error">Select Payment Card is required</p>}
+      </div>
+
+              
+            
 
 
               <hr />
@@ -231,18 +323,12 @@ function BillPaymentsPage() {
                 justifyContent: "end"
 
               }}>
-                <input style={{ margin: "0px 10px 0px 0px" }} type="reset" onClick={reset} />
+                <input style={{ margin: "0px 10px 0px 0px" }} type="reset" onClick={resetForm} />
                 <input style={{ margin: "0px" }} type="submit" value="Pay" />
               </div>
 
             </form>
           </Modal.Body>
-          {/* <Modal.Footer>
-        <div className="divReset">
-      <input style={{margin:"0px 10px 0px 0px"}} type="reset" onClick={reset} />
-      <input style={{margin:"0px"}}  type="submit" />
-      </div>
-        </Modal.Footer> */}
         </Modal>
       </div>
     </>
