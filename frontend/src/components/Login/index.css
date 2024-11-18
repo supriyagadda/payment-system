@@ -158,6 +158,25 @@ input:focus {
 }
 
 
-.login-form-container_input{
-width: 90% !important;
+.login-form-container_input {
+  width: 100%; /* Allow the input to take up full width */
+  padding-right: 40px; /* Add space for the icon */
+  box-sizing: border-box; /* Ensure padding doesn't affect total width */
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px; /* Adjust this value as needed */
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.password-container {
+  position: relative;
+  width: 100%;
 }

@@ -218,27 +218,27 @@ const Login = ({ onClickLogin, onClickRegister }) => {
   const renderPassword = () => {
     return (
       <div className="field-container">
-      <div className="center-container">
-        <KeyIcon />
-      </div>
-      <div className="label-tag-container">
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <input
-            className="login-form-container_input"
-            type={showPassword ? "text" : "password"}
-            value={password}
-            onChange={onChangePassword}
-            placeholder="Password"
-          />
-          <span onClick={toggleShowPassword} style={{ cursor: "pointer", marginLeft: "8px" }}>
-            {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
-          </span>
+        <div className="center-container">
+          <KeyIcon />
         </div>
-        {errors.password && (
-          <span className="error-message">{errors.password}</span>
-        )}
+        <div className="label-tag-container">
+          <div className="password-container">
+            <input
+              className="login-form-container_input"
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={onChangePassword}
+              placeholder="Password"
+            />
+            <span className="eye-icon" onClick={toggleShowPassword}>
+              {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
+            </span>
+          </div>
+          {errors.password && (
+            <span className="error-message">{errors.password}</span>
+          )}
+        </div>
       </div>
-    </div>
     );
   };
 
