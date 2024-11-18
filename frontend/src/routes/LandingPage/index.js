@@ -11,7 +11,7 @@ import { FaSignOutAlt } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import Cookies from "js-cookie";
 import { removeUserId } from '../../utils/StorageUtils';
-
+import Button from "react-bootstrap/Button";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
@@ -69,8 +69,24 @@ const clearLanguageCookie = () => {
             <Link to="/profile">
             <FaUserEdit style={{fontSize:"17px", marginRight:"4px",marginTop:"-1px", color:"#fff"}}/>
             <span className='firstLetter' style={{color:"#fff"}}>{`${dataObject.firstname}`} &nbsp;</span>
-            <span className='firstLetter' style={{color:"white"}}>{`${dataObject.lastname}`}</span></Link>
-            </span> <span style={{ position: "absolute", right: "10px", cursor: "pointer" }} onClick={clearLanguageCookie}><IoIosLogOut style={{ fontSize: "24px" }} /></span></Col>
+            <span className='firstLetter' style={{color:"white",marginRight:"50px"}}>{`${dataObject.lastname}`}</span></Link>
+            </span> 
+            <Button
+              variant="danger"
+              style={{
+                position: "absolute",
+                right: "10px",
+                fontSize: "14px",
+                padding: "6px 12px",
+                borderRadius: "5px",
+                cursor: "pointer",
+                marginLeft:"20px",
+              }}
+              onClick={clearLanguageCookie}
+            >
+              Logout
+            </Button>
+            </Col>
         </Row>
       </div>
       <div className="mentItems" style={{ backgroundColor: "#6358dc", color: "#fff", padding: "5px 10px 5px 0px"}}>
